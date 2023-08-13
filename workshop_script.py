@@ -3,9 +3,11 @@ import csv
 import pandas as pd
 import json
 
+#Carga de la configuracion de los datos de la database
 with open('db_config.json') as config_file:
     config = json.load(config_file)
 
+#Conexion a la base de datos
 try:
     conn = psycopg2.connect(
         host = 'localhost',
@@ -18,6 +20,7 @@ try:
 
     cursor = conn.cursor()
 
+    #Creacion de la tabla candidatos con sus respectivas columnas y tipo de valores
     create_table_query = """
         CREATE TABLE IF NOT EXISTS candidatos (
             id SERIAL PRIMARY KEY,
@@ -38,12 +41,14 @@ try:
     cursor.execute(create_table_query)
     conn.commit
 
+    #Insercion de los datos en las respectivas columnas 
     sql = """
         COPY candidatos(first_name, last_name, email, application_date, country, YOE, seniority, technology, code_challenge_score, technical_interview_score)
         FROM 'C:/Users/kevin/ETL/Postgres/workshop_001/candidates.csv' DELIMITER ';' CSV HEADER;
     """
     cursor.execute(sql)
 
+    #Se hace la condicion para agregar los que son contratados los cuales deben cumplir unas condiciones
     update_hired = """
         UPDATE candidatos
         SET hired = (code_challenge_score >= 7) AND (technical_interview_score >= 7);
