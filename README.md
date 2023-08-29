@@ -2,7 +2,7 @@
 
 ## ¿Como correr el script del taller?
 
-1. Clone el repositorio con:
+1. Clone el repositorio con: `git clone https://github.com/VinkeArtunduaga/workshop_01.git`
 2. Instale python 3.11
 3. Instale la base de datos PostgreSQL
 4. Para las librerias es necesario hacer un pip install y de esta manera las librerias psycopg, csv, pandas y json seran instaladas.
