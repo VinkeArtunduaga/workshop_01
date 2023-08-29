@@ -1,4 +1,6 @@
 # workshop_01
+## Python Data Engineer 
+Se encarga crear una aplicacion para migrar los datos a una base de datos relacional, para poder desplegar esos datos mediante visualizaciones, los datos esperan ser guardados en la base de datos y los reportes deben salir de ella no del archivo CSV.
 
 ## ¿Como correr el script del taller?
 
