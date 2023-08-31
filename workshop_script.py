@@ -21,49 +21,49 @@ try:
     cursor = conn.cursor()
 
     #Creacion de la tabla candidatos con sus respectivas columnas y tipo de valores
-    # create_table_query = """
-    #     CREATE TABLE IF NOT EXISTS candidatos (
-    #         id SERIAL PRIMARY KEY,
-    #         first_name VARCHAR,
-    #         last_name VARCHAR,
-    #         email VARCHAR,
-    #         application_date DATE,
-    #         country VARCHAR,
-    #         YOE INTEGER,
-    #         seniority VARCHAR,
-    #         technology VARCHAR,
-    #         code_challenge_score INTEGER,
-    #         technical_interview_Score INTEGER,
-    #         hired BOOLEAN
-    #     );
-    # """
+    create_table_query = """
+        CREATE TABLE IF NOT EXISTS candidatos (
+            id SERIAL PRIMARY KEY,
+            first_name VARCHAR,
+            last_name VARCHAR,
+            email VARCHAR,
+            application_date DATE,
+            country VARCHAR,
+            YOE INTEGER,
+            seniority VARCHAR,
+            technology VARCHAR,
+            code_challenge_score INTEGER,
+            technical_interview_Score INTEGER,
+            hired BOOLEAN
+        );
+    """
 
-    # cursor.execute(create_table_query)
-    # conn.commit
+    cursor.execute(create_table_query)
+    conn.commit
 
     #Insercion de los datos en las respectivas columnas 
-    # sql = """
-    #     COPY candidatos(first_name, last_name, email, application_date, country, YOE, seniority, technology, code_challenge_score, technical_interview_score)
-    #     FROM 'C:/Users/kevin/ETL/Postgres/workshop_001/candidates.csv' DELIMITER ';' CSV HEADER;
-    # """
-    # cursor.execute(sql)
+    sql = """
+        COPY candidatos(first_name, last_name, email, application_date, country, YOE, seniority, technology, code_challenge_score, technical_interview_score)
+        FROM 'C:/Users/kevin/ETL/Postgres/workshop_001/candidates.csv' DELIMITER ';' CSV HEADER;
+    """
+    cursor.execute(sql)
 
     #Se hace la condicion para agregar los que son contratados los cuales deben cumplir unas condiciones
-    # update_hired = """
-    #     UPDATE candidatos
-    #     SET hired = (code_challenge_score >= 7) AND (technical_interview_score >= 7);
-    # """
-    # cursor.execute(update_hired)
+    update_hired = """
+        UPDATE candidatos
+        SET hired = (code_challenge_score >= 7) AND (technical_interview_score >= 7);
+    """
+    cursor.execute(update_hired)
 
-    # conn.commit()
+    conn.commit()
 
-    # techology_group = """
-    #     ALTER TABLE candidatos
-    #     ADD COLUMN technology_group varchar;
-    # """
-    # cursor.execute(techology_group)
-    # conn.commit()
-    # print("columna creada")
+    techology_group = """
+        ALTER TABLE candidatos
+        ADD COLUMN technology_group varchar;
+    """
+    cursor.execute(techology_group)
+    conn.commit()
+    print("columna creada")
      
     update_technology_group = """
         UPDATE candidatos
